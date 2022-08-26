@@ -22,7 +22,7 @@ app.use(helmet())
 app.use(morgan('common'))
 
 app.use('/api/users', userRoute)
-app.use('/api/auth', authRoute)
+app.use('/api/', authRoute)
 
 app.listen(8800, () => {
     console.log('Backend server is running!!')

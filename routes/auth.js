@@ -1,7 +1,4 @@
 const router = require('express').Router()
-
-router.get('/', (req, res) => {
-    res.status(200).json({ message: 'auth route' })
-})
+const User = require('../models/User')
 
 module.exports = router
