@@ -47,12 +47,32 @@ router.delete('/:id', async (req, res) => {
 })
 
 // like a post
+router.put('/:id/like', async (req, res) => {
+    const { id } = req.params
+    const { userId } = req.body
+    const post = await Post.findById(id)
+    try {
+        if (!post.likes.includes(userId)) {
+            await post.updateOne({ $push: { likes: userId } })
+            res.status(200).json({ message: 'The post has been liked' })
+        }
+        else {
+            await post.updateOne({ $pull: { likes: userId } })
+            res.status(200).json({ message: 'The post has been disliked' })
+        }
+    } catch (error) {
+        res.status(500).json(error)
+    }
+})
+
 // get a post
 router.get('/:id', async (req, res) => {
+    const { id } = req.params
     try {
-
+        const post = await Post.findById(id)
+        res.status(200).json(post)
     } catch (error) {
-        res.status(403).json(error)
+        res.status(500).json(error)
     }
 })
 
