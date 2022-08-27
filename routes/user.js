@@ -1,7 +1,12 @@
+const User = require('../models/User')
+
 const router = require('express').Router()
 
-router.get('/', (req, res) => {
-    res.status(200).json({ message: 'user route' })
-})
+// get all user
+// get a single user
+// update a user
+// delete a user
+// follow a user
+// unfollow a user
 
 module.exports = router
